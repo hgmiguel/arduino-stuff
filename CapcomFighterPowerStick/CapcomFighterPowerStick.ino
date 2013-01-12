@@ -1,13 +1,13 @@
 
 const int buttonPin = 2;     // the number of the pushbutton pin
-const int maxButtonPin = 9;
+const int maxButtonPin = 13;
 
 const int jostikInitPin = 0;
 const int jostikEndPin = 3;
 
 const int ledPin =  13;      // the number of the LED pin
 const String arrayBits = "11111111";
-const String arrayLettersBits = "arbxyl51";
+const String arrayLettersBits = "arbxyl512346";
 const String arrayJostikBits = "1111";
 unsigned char x = 1;
 String bits = arrayBits;
