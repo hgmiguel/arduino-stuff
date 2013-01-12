@@ -39,7 +39,9 @@ void loop(){
   for (int i = 2; i <= maxButtonPin; i++) {
     buttonState = digitalRead(i);
     if (buttonState != HIGH) {
-      Keyboard.write(arrayLettersBits[i-2]);
+      Keyboard.press(arrayLettersBits[i-2]);
+    } else {
+        Keyboard.release(arrayLettersBits[i-2]);
     }
     
   }
