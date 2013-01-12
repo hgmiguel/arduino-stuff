@@ -1,13 +1,13 @@
 
 const int buttonPin = 2;     // the number of the pushbutton pin
-const int maxButtonPin = 7;
+const int maxButtonPin = 9;
 
 const int jostikInitPin = 0;
 const int jostikEndPin = 3;
 
 const int ledPin =  13;      // the number of the LED pin
-const String arrayBits = "111111";
-const String arrayLettersBits = "arbxyl";
+const String arrayBits = "11111111";
+const String arrayLettersBits = "arbxyl51";
 const String arrayJostikBits = "1111";
 unsigned char x = 1;
 String bits = arrayBits;
@@ -57,32 +57,73 @@ void loop(){
     if (buttonState == 1023.00) {
       switch(i) {
         case 0:
-          Keyboard.write(KEY_RIGHT_ARROW);
+          delay(5);
+          buttonState = analogRead(i);
+          if (buttonState == 1023.00) {
+            Keyboard.press(KEY_RIGHT_ARROW);
+            jostickBits[i-jostikInitPin]='0';
+          }
           break;
         case 1:
-          Keyboard.write(KEY_LEFT_ARROW);
-          break;
-        case 2:
-          Keyboard.write(KEY_DOWN_ARROW);
+        delay(5);
+          buttonState = analogRead(i);
+          if (buttonState == 1023.00) {
+          Keyboard.press(KEY_LEFT_ARROW);
+          jostickBits[i-jostikInitPin]='0';
+          }
+          
           break;
         case 3:
-          Keyboard.write(KEY_UP_ARROW);
+        delay(5);
+          buttonState = analogRead(i);
+          if (buttonState == 1023.00) {
+          Keyboard.press(KEY_DOWN_ARROW);
+          jostickBits[i-jostikInitPin]='0';
+          }
+          
+          break;
+        case 2:
+        delay(5);
+          buttonState = analogRead(i);
+          if (buttonState == 1023.00) {
+          Keyboard.press(KEY_UP_ARROW);
+          }
+          
+          break;
+      }
+      } else {
+        switch(i) {
+       case 0:
+          Keyboard.release(KEY_RIGHT_ARROW);
+          
+          break;
+        case 1:
+          Keyboard.release(KEY_LEFT_ARROW);
+          
+          break;
+        case 3:
+          Keyboard.release(KEY_DOWN_ARROW);
+          
+          break;
+        case 2:
+          Keyboard.release(KEY_UP_ARROW);
+          
           break;
       }
       
-      jostickBits[i-jostikInitPin]='0';
+      
     }
     
   }
   
   /**
-  Serial.println(bits); 
+  Serial.println(bits); */
   Serial.println(jostickBits); 
-  **/
+
 
   bits = arrayBits;
   jostickBits = arrayJostikBits;
-  delay(300);
+  //delay(10);
 
     // turn LED on:    
  //   digitalWrite(ledPin, HIGH);  
